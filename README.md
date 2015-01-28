@@ -14,7 +14,7 @@ Simply include this file in your project and import in your LESS. Then you can g
 Now just use <code>.column(x)</code> in element styles & media queries to make the element into a column that's floating and has a fluid width.
 
 ### Examples
-<code>.column(2);</code> takes up 2 columns on the grid
-<code>.column(3);</code> takes up 3 columns on the grid
-<code>.push(4);</code> adds 4 columns of space on the right
+<code>.column(2);</code> takes up 2 columns on the grid<br/>
+<code>.column(3);</code> takes up 3 columns on the grid<br/>
+<code>.push(4);</code> adds 4 columns of space on the right<br/>
 <code>.push(2);</code> adds 2 columns of space on the left
