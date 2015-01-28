@@ -1,0 +1,246 @@
+/**
+Styles for Rocket Grid demo so you can see how this works.
+https://github.com/angelagiese/Rocket-Grid
+*/
+
+
+
+
+
+// add in the grid like this so you can use the mixins
+@import "_rocket-grid";
+
+// px-to-rem-mixins for this demo https://github.com/angelagiese/px-to-rem-mixins
+@import "_px-to-rem";
+
+
+
+
+
+// =========================
+//    #FLOATS & CLEARING
+// =========================
+
+// floating happens a lot. 
+// use these mixins to make it slightly easier to add floats to elements
+
+.left() {
+    float: left;
+}
+
+.right() {
+    float: right;
+}
+
+
+// clearfix on parent elements clears floating child elements, IE 8 and up
+// just add .clearfix(); to parent elements to clear children
+.clearfix() {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+
+
+
+
+/* ===============
+   #BASE STYLES
+================ */
+
+body {
+    // Need to set the default font here as a base.
+    .font-size(14);
+    .line-height(20);
+    color: #444;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal; 
+    margin: 0 0 35px; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .h1 { .font-size(40); .line-height(48); }
+h2, .h2 { .font-size(30); .line-height(36); }
+h3, .h3 { .font-size(23); .line-height(28); }
+h4, .h4 { .font-size(18); .line-height(22); }
+h5, .h5 { .font-size(16); .line-height(20); }
+h6, .h6 { .font-size(13); .line-height(16); }
+
+p { margin: 0 0 16px; }
+
+
+
+
+
+/* =================
+     #OBJECTS
+================== */
+
+.container {
+    /* for use around .wrap for easy application of background 
+    color/image/etc */
+    .clearfix();
+}
+
+.wrap {
+    /* to position main content sections vertically centered.
+    does not affect text-align property */
+    position: relative;
+    padding: 40px 0;
+    margin: 0 auto;
+	text-align: center;
+}
+
+.row {
+    .row();
+    .clearfix();
+}
+
+
+
+header, footer {
+	background-color: #754046;
+	color: white;
+
+	a {
+		color: white;
+	}
+}
+
+.container:nth-child(4n+1) {
+
+	.col { 
+		background-color: #D08D87;
+	}
+
+}
+
+.container:nth-child(4n+2) {
+
+	.col { 
+		background-color: #FDE567;
+	}
+
+}
+
+.container:nth-child(4n+3) {
+
+	.col { 
+		background-color: #FFBD67;
+	}
+
+}
+
+.container:nth-child(4n+4) {
+
+	.col {
+		background-color: #FF905B;
+	}
+
+}
+
+.col {
+	min-height: 200px;
+	background-color: white;
+	color: #444; 
+	.font-size(20);
+	.line-height(30);
+}
+
+
+
+/*==========================================
+  #RESPONSIVENESS
+  It's better to keep width constraints
+  and special styles for different 'views'
+  here. Everything above here should
+  apply to all screen sizes.
+==========================================*/
+
+/* Laptop and larger */
+@media screen and (min-width: 960px) {
+
+	.demo1 .col { .column(6); }
+	.demo2 .col { .column(4); }
+	.demo3 .col { .column(3); }
+
+	.demo4 {
+
+		.col {
+			.column(2);
+
+			&:nth-child(5) {
+				.pull(2);
+			}
+
+			&:nth-child(6) {
+				.push(2);
+			}
+
+		}
+
+	}
+
+}
+
+/* Laptop and smaller, no desktop */
+@media screen and (max-width: 1199px) {
+
+    .wrap { 
+        padding: 40px;
+    }
+
+}
+
+/* Desktop & extra large */
+@media screen and (min-width: 1200px) {
+
+    .wrap { 
+        max-width: 960px;
+    }
+
+}
+
+/* Tablet only */
+@media screen and (min-width: 481px) and (max-width: 959px) {
+
+    .demo1, .demo2, .demo3, .demo4 {
+    	.col { 
+    		.column(6);
+    	}  
+    }
+
+    .demo4 {
+
+		.col {
+
+			&:nth-child(5) {
+				.pull(6);
+			}
+
+			&:nth-child(6) {
+				.push(6);
+			}
+
+		}
+
+	}
+
+}
+
+/* Phone only */
+@media screen and (max-width: 480px) {
+
+    .demo1, .demo2, .demo3, .demo4 {
+    	.col { 
+    		.column(12);
+    	}  
+    }
+
+}

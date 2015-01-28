@@ -1,0 +1,57 @@
+/* ===========================================
+  #Rocket GRID
+  https://github.com/angelagiese/Rocket-Grid
+=========================================== */
+
+// Defaults which you can freely override
+@gutter-width: 20px; // space between columns
+@columns: 12; // number of total columns in grid
+@total-width: 100%; // fluid width for responsiveness
+
+@correction: 1 / @total-width; // fix for IE rounding issue
+
+.row(@columns:@columns) {
+    display: block;
+    width: calc(~"@{total-width} + @{gutter-width}");
+    margin: (@gutter-width * -.5);
+    
+    // clear the floating child columns
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+}
+
+.column(@x,@columns:@columns) {
+    display: inline;
+    float: left;
+    width: calc(~"((@{total-width}/@{columns})*@{x}) - @{gutter-width} - @{correction}");
+    margin: (@gutter-width * .5);
+}
+
+// pushes column to the right, leaving whtiespace (column) on the left
+.push(@offset:1) {
+    margin-left: calc(~"((@{total-width}/@{columns})*@{offset}) + @{gutter-width}*.5");
+    margin-right: (@gutter-width * .5);
+}
+
+// the opposite of push, leaving whitespace (column) to the right
+.pull(@offset:1) {
+    margin-right: calc(~"((@{total-width}/@{columns})*@{offset}) + @{gutter-width}*.5");
+    margin-left: (@gutter-width * .5);
+}
+
+/* 
+
+Now just use .column(x) in element styles & media queries to make the element into a column that's floating and has a fluid width.
+
+.column(2); = takes up 2 columns on the grid
+.column(3); = takes up 3 columns on the grid
+.push(4); = adds 4 columns of space on the right
+.push(2); = adds 2 columns of space on the left
+
+Don't forget to nest columns, push, and pull inside of a .row()!
+
+*/
